@@ -1,4 +1,7 @@
-/* style.css - Estilo básico inspirado en las imágenes */
+/* style.css - Estilo básico del proyecto Kumbia Sound
+   Contiene variables de diseño, estilos para header, reproductor,
+   hero/vinilo, tarjetas destacadas, secciones y responsividad.
+   Comentarios añadidos para facilitar mantenimiento y accesibilidad. */
 :root {
     --primary-color: #000000;
     --secondary-color: #f5f5f5;
@@ -8,19 +11,25 @@
     --border-color: #e0e0e0;
     --card-bg: #ffffff;
     --section-bg: #fafafa;
+     /* Variables adicionales usadas por notificaciones u otros elementos */
+     --text-on-dark: #FFECD9;
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.18);
+    /* Altura por defecto del reproductor (evita solapamiento con footer) */
+    --player-height: 76px;
+    /* Altura estimada del header (usada por el menú móvil) */
+    --header-height: 64px;
+    /* Color rojo principal usado en la web */
+    --accent-red: #EB0100;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Estilos globales del documento */
 body {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
-    background-color: #ffffff;
+    background-color: #FFECD9;
     line-height: 1.6;
+    /* Espacio para que el reproductor fijo no tape el footer */
+    padding-bottom: calc(var(--player-height) + 12px);
 }
 
 /* Header */
@@ -29,7 +38,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #2E0808;
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
@@ -50,7 +59,35 @@ body {
     font-weight: 700;
     font-size: 1.8rem;
     letter-spacing: -0.5px;
-    color: var(--primary-color);
+    
+    /* Gradiente con todos los colores de tu paleta */
+    background: linear-gradient(
+        90deg,
+        #2E0808 0%,      /* Marrón oscuro */
+        #FFECD9 20%,     /* Crema */
+        #2CF2EE 40%,     /* Cian */
+        #FFECD9 60%,     /* Crema */
+        #E63946 80%,     /* Rojo acento */
+        #2E0808 100%     /* Marrón oscuro */
+    );
+    
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 100%;
+    
+    /* Animación de movimiento */
+    animation: gradientMove 5s ease-in-out infinite alternate;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .main-nav ul {
@@ -61,7 +98,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-color);
+    color: #FFECD9;
     font-weight: 500;
     font-size: 0.95rem;
     padding: 0.5rem 0;
@@ -71,7 +108,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--accent-color);
+    color: #2CF2EE;
 }
 
 .nav-link.active::after {
@@ -81,7 +118,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: var(--accent-color);
+    background-color: #2CF2EE;
 }
 
 .header-actions {
@@ -91,7 +128,7 @@ body {
 }
 
 .btn-contact {
-    background-color: var(--primary-color);
+    background-color: #EB0100 ;
     color: white;
     border: none;
     padding: 0.5rem 1.5rem;
@@ -102,7 +139,7 @@ body {
 }
 
 .btn-contact:hover {
-    background-color: #333333;
+    background-color: #2CF2EE;
 }
 
 .social-icons {
@@ -110,14 +147,73 @@ body {
     gap: 1rem;
 }
 
+/* Estilo base */
 .social-icon {
-    color: var(--text-color);
+    color: #FFECD9;
     font-size: 1.2rem;
-    transition: color 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(255, 236, 217, 0.1);
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 236, 217, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.social-icon:hover {
-    color: var(--accent-color);
+/* Instagram con gradiente animado */
+.social-icon[href*="instagram"]:hover {
+    color: white !important;
+    background: linear-gradient(
+        45deg,
+        #405DE6 0%,    /* Azul */
+        #833AB4 25%,   /* Púrpura */
+        #C13584 50%,   /* Rosa magenta */
+        #E1306C 75%,   /* Rosa rojizo */
+        #FD1D1D 100%   /* Rojo */
+    );
+    background-size: 200% 200%;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+    border-color: transparent;
+    animation: instagramGradient 2s ease infinite;
+}
+
+/* YouTube con efecto de pulso */
+.social-icon[href*="youtube"]:hover {
+    color: white !important;
+    background: #FF0000;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    border-color: transparent;
+    animation: youtubePulse 1.5s ease infinite;
+}
+
+/* Animación del gradiente de Instagram */
+@keyframes instagramGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animación de pulso para YouTube */
+@keyframes youtubePulse {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 30px rgba(255, 0, 0, 0.6);
+    }
 }
 
 .mobile-menu-btn {
@@ -135,9 +231,11 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--primary-color);
+    background-color: #2E0808cc;
     color: white;
-    padding: 0.8rem 2rem;
+    /* Usamos altura fija para que el contenido no sea tapado por el footer */
+    height: var(--player-height);
+    padding: 0.6rem 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -189,7 +287,7 @@ body {
 
 .playlist-dropdown {
     position: fixed;
-    bottom: 60px;
+    bottom: calc(var(--player-height) + 12px);
     right: 2rem;
     background-color: white;
     border: 1px solid var(--border-color);
@@ -260,23 +358,22 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: #2E0808 ;
     color: white;
     border: 1px solid var(--primary-color);
 }
 
 .btn-primary:hover {
-    background-color: #333333;
+    background-color: #2E0808cc;
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 1px solid var(--border-color);
+    background-color: #EB0100;
+    color: #FFFFFF;
 }
 
 .btn-secondary:hover {
-    background-color: var(--secondary-color);
+    background-color: #EB0100;
 }
 
 .vinyl-disc {
@@ -287,6 +384,7 @@ body {
     position: relative;
     margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
 }
 
 .vinyl-disc::before {
@@ -299,6 +397,35 @@ body {
     height: 60px;
     background-color: white;
     border-radius: 50%;
+}
+
+/* Rotación cuando está reproduciendo */
+.vinyl-disc.playing {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Brazo del tocadiscos */
+.vinyl-arm {
+    position: absolute;
+    width: 120px;
+    height: 6px;
+    background: linear-gradient(90deg, #444, #222);
+    top: 30%;
+    left: 10%;
+    transform-origin: left center;
+    border-radius: 4px;
+    transition: transform 0.4s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Brazo en posición de reproducción */
+.vinyl-arm.playing {
+    transform: rotate(18deg) translateY(6px);
 }
 
 /* Common Section Styles */
@@ -334,16 +461,17 @@ section {
 }
 
 .featured-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    /* Alineamos visualmente con las otras tarjetas (amarillo/rojo) */
+    background-color: #ffd8b299;
+    border: 1px solid #EB0100;
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .featured-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
 .card-header {
@@ -374,8 +502,8 @@ section {
 }
 
 .preview-btn {
-    background: none;
-    border: 1px solid var(--border-color);
+    background-color: var(--accent-red);
+    border: 1px solid rgba(0,0,0,0.06);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.9rem;
@@ -383,11 +511,13 @@ section {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    color: #FFECD9;
 }
 
 .preview-btn:hover {
-    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(235,1,0,0.12);
 }
 
 .preview-btn.playing {
@@ -423,10 +553,6 @@ section {
     transition: background-color 0.3s;
 }
 
-.btn-cart:hover {
-    background-color: #333333;
-}
-
 /* YouTube Section */
 .youtube-container {
     display: grid;
@@ -452,10 +578,10 @@ section {
 }
 
 .channel-info {
-    background-color: var(--card-bg);
+    background-color: #ffd8b299;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #EB0100;
 }
 
 .channel-info h3 {
@@ -470,7 +596,7 @@ section {
 
 .btn-youtube {
     background-color: #ff0000;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
@@ -493,8 +619,8 @@ section {
 }
 
 .blog-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: #ffd8b299;
+    border: 1px solid #EB0100;
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s;
@@ -506,8 +632,8 @@ section {
 
 .blog-category {
     display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+    background-color: #eb0100;
+    color: #FFECD9;
     padding: 0.2rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -536,13 +662,13 @@ section {
 }
 
 .blog-link:hover {
-    color: var(--accent-color);
+    color: #eb0100;
 }
 
 /* Database Section */
 .database-container {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: #ffd8b299;
+    border: 1px solid #EB0100;
     border-radius: 8px;
     padding: 2rem;
 }
@@ -555,15 +681,15 @@ section {
 .search-input {
     flex: 1;
     padding: 0.8rem 1rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid #EB0100;
     border-right: none;
     border-radius: 4px 0 0 4px;
     font-size: 1rem;
 }
 
 .search-btn {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #EB0100;
+    color: #FFECD9;
     border: none;
     padding: 0 1.5rem;
     border-radius: 0 4px 4px 0;
@@ -579,7 +705,7 @@ section {
 }
 
 .filter-btn {
-    background-color: var(--secondary-color);
+    background-color: #FFECD9;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -590,8 +716,8 @@ section {
 
 .filter-btn.active,
 .filter-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #eb0100;
+    color: #FFECD9;
 }
 
 .database-results {
@@ -601,10 +727,10 @@ section {
 }
 
 .result-card {
-    background-color: var(--secondary-color);
+    background-color: #FFECD9;
     padding: 1rem;
     border-radius: 6px;
-    border-left: 4px solid var(--accent-color);
+    border-left: 4px solid #eb0100;
 }
 
 .result-card h4 {
@@ -626,8 +752,8 @@ section {
 }
 
 .game-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: #ffd8b299;
+    border: 1px solid #EB0100;
     border-radius: 8px;
     padding: 2rem;
     text-align: center;
@@ -667,7 +793,7 @@ section {
 }
 
 .btn-play:hover {
-    background-color: #333333;
+    background-color: #EB0100;
 }
 
 /* Recommendations Section */
@@ -678,8 +804,8 @@ section {
 }
 
 .recommendation-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    background-color: #ffd8b299;
+    border: 1px solid #EB0100;
     border-radius: 8px;
     padding: 1.5rem;
     position: relative;
@@ -694,7 +820,7 @@ section {
     position: absolute;
     top: -10px;
     left: 1rem;
-    background-color: var(--accent-color);
+    background-color: #EB0100;
     color: white;
     padding: 0.2rem 0.8rem;
     border-radius: 20px;
@@ -728,9 +854,11 @@ section {
 
 /* Footer */
 .footer {
-    background-color: var(--primary-color);
+    background-color: #2E0808;
     color: white;
-    padding: 4rem 2rem 2rem;
+    /* Aumentamos padding-bottom para evitar que el reproductor fijo oculte contenido
+       (usa la variable --player-height definida en :root) */
+    padding: 4rem 2rem calc(var(--player-height) + 2rem);
 }
 
 .footer-content {
@@ -822,6 +950,43 @@ section {
     font-size: 0.9rem;
 }
 
+/* Barra de progreso y tiempos del reproductor */
+.seek-bar {
+    width: 220px;
+    accent-color: #EB0100;
+    margin: 0 0.5rem;
+}
+
+.track-time {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+    min-width: 36px;
+    text-align: center;
+}
+
+/* Notificaciones en sitio */
+.site-notification {
+    background: #2E0808;
+    color: #FFECD9;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+/* Pequeños efectos visuales */
+.preview-btn:focus,
+.btn-play:focus,
+.player-btn:focus {
+    outline: 3px solid rgba(44,242,238,0.25);
+    outline-offset: 2px;
+}
+
+/* Mejor contraste para la playlist desplegable */
+.playlist-dropdown {
+    background-color: #ffffffee;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
 .footer-links {
     display: flex;
     gap: 1.5rem;
@@ -838,49 +1003,4 @@ section {
     color: white;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 6rem;
-        gap: 2rem;
-    }
-    
-    .hero-title {
-        font-size: 2.2rem;
-    }
-    
-    .vinyl-disc {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .youtube-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .main-nav {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: block;
-    }
-    
-    .header-actions .btn-contact {
-        display: none;
-    }
-    
-    .featured-grid,
-    .blog-grid,
-    .game-container,
-    .recommendations-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-}
+/* Responsive rules moved to css/responsive.css - see that file for mobile styles and nav behaviour. */
