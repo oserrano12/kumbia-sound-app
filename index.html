@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumbia Sound</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oswald:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1>KUMBIA SOUND</h1>
+            <p class="tagline">Vinilos de Cumbia Peruana</p>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="pages/blog.html">Blog</a></li>
+                <li><a href="pages/database.html">Base de Datos</a></li>
+                <li><a href="pages/games.html">Juegos</a></li>
+                <li><a href="pages/recommendations.html">Recomendados</a></li>
+            </ul>
+        </nav>
+        <!-- Redes sociales en header -->
+        <div class="header-social">
+            <a href="https://www.youtube.com/@Kumbia_Sound" target="_blank" rel="noopener noreferrer" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/kumbia.sound/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Reproductor de Audio Fijo -->
+    <div class="audio-player-fixed">
+        <div class="player-controls">
+            <button id="prev-btn">⏮</button>
+            <button id="play-btn">▶</button>
+            <button id="pause-btn" style="display: none;">⏸</button>
+            <button id="next-btn">⏭</button>
+            <span id="current-track">Selecciona una canción</span>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+            <span class="volume-text">Volumen: <span id="volume-value">50</span>%</span>
+        </div>
+        <div class="playlist">
+            <select id="playlist-select">
+                <option value="">Seleccionar Playlist</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="home-container">
+        <!-- Bloque YouTube -->
+        <section class="youtube-section">
+            <h2>Último en YouTube</h2>
+            <div class="youtube-embed">
+                <iframe 
+                    src="https://www.youtube.com/watch?v=09zHSHXQSLY" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+                <a href="https://www.youtube.com/@Kumbia_Sound" class="youtube-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-youtube"></i> Ver canal completo →
+                </a>
+            </div>
+        </section>
+
+        <!-- Contenidos Destacados -->
+        <section class="featured-section">
+            <h2>Destacados del Mes</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-icon">🎤</div>
+                    <h3>Artista Recomendado</h3>
+                    <img src="assets/images/artista-mes.jpg" alt="Artista del mes" class="featured-img">
+                    <p>Descubre al artista destacado del mes en el mundo de la cumbia peruana.</p>
+                    <a href="pages/recommendations.html#artistas" class="featured-link">Ver más</a>
+                </div>
+                <div class="featured-card">
+                    <div class="featured-icon">💿</div>
+                    <h3>Álbum Recomendado</h3>
+                    <img src="assets/images/album-mes.jpg" alt="Álbum del mes" class="featured-img">
+                    <p>El vinilo imprescindible de este mes para tu colección de cumbia.</p>
+                    <a href="pages/recommendations.html#albumes" class="featured-link">Ver más</a>
+                </div>
+                <div class="featured-card">
+                    <div class="featured-icon">🎵</div>
+                    <h3>Subgénero Destacado</h3>
+                    <img src="assets/images/subgenero-mes.jpg" alt="Subgénero del mes" class="featured-img">
+                    <p>Explora este subgénero de la cumbia peruana y su historia.</p>
+                    <a href="pages/recommendations.html#subgeneros" class="featured-link">Ver más</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extractos del Blog -->
+        <section class="blog-preview">
+            <h2>Últimas del Blog</h2>
+            <div class="blog-grid" id="blog-preview-content">
+                <!-- Artículos cargados dinámicamente por JavaScript -->
+                <div class="loading-blog">Cargando artículos...</div>
+            </div>
+            <a href="pages/blog.html" class="view-all">
+                <i class="fas fa-book-open"></i> Ver todos los artículos →
+            </a>
+        </section>
+
+        <!-- Accesos Rápidos -->
+        <section class="quick-links">
+            <h2>Explora Kumbia Sound</h2>
+            <div class="links-grid">
+                <a href="pages/blog.html" class="link-card">
+                    <h3>Blog Editorial</h3>
+                    <p>Artículos, historias y análisis sobre cumbia peruana</p>
+                    <div class="link-arrow">→</div>
+                </a>
+                <a href="pages/database.html" class="link-card">
+                    <h3>Base de Datos</h3>
+                    <p>Consulta artistas, discos y géneros musicales</p>
+                    <div class="link-arrow">→</div>
+                </a>
+                <a href="pages/games.html" class="link-card">
+                    <h3>Juegos Musicales</h3>
+                    <p>Trivia y desafíos sobre cumbia peruana</p>
+                    <div class="link-arrow">→</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Promoción de redes sociales -->
+        <section class="social-promo">
+            <h2>Síguenos en redes</h2>
+            <p>Más contenido de cumbia peruana en nuestras redes sociales:</p>
+            <div class="social-icons-large">
+                <a href="https://www.facebook.com/profile.php?id=61585283270245" target="_blank" rel="noopener noreferrer" class="social-icon-large facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/kumbia.sound/" target="_blank" rel="noopener noreferrer" class="social-icon-large instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.youtube.com/@Kumbia_Sound" target="_blank" rel="noopener noreferrer" class="social-icon-large youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.tiktok.com/@kumbiasound" target="_blank" rel="noopener noreferrer" class="social-icon-large tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kumbia Sound</h4>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <a href="mailto:contacto@kumbiasound.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> contacto@kumbiasound.com
+                </a>
+                <p class="footer-text">Colaboraciones y sugerencias</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61585283270245" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/kumbia.sound/" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.youtube.com/@Kumbia_Sound" target="_blank" rel="noopener noreferrer" class="social-link youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://www.tiktok.com/@kumbiasound" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+                        <i class="fab fa-tiktok"></i> TikTok
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Kumbia Sound. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Acerca del proyecto</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos de uso</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/audio-player.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
